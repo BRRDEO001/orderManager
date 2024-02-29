@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+	<style src="styles.css"/>
+	<window apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm')@init('org.ordermanager.MyViewModel')">
+		<label sclass="h1">Vanessa Colleen Food From Home</label>
+		<tabbox>
+			<tabs>
+				<tab label="Create Menu"/>
+				<tab label="View Menu"/>
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<include src="createMenu.zul"/>
+				</tabpanel>
+				<tabpanel>
+					<include src="viewMenu.zul"/>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
+</zk>

@@ -1,0 +1,167 @@
+<zk>
+    <style src="createMenu.css"/>
+    <tabbox>
+        <tabs>
+            <tab label="Week 1"/>
+            <tab label="Week 2"/>
+            <tab label="Week 3"/>
+            <tab label="Week 4"/>
+        </tabs>
+        <tabpanels>
+            <tabpanel>
+                <grid>
+                    <columns>
+                        <column label="Meal Name"/>
+                        <column label="Meal Description"/>
+                        <column label="Sizes and Prices"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Meal Name 1"/>
+                            <label value="Meal Description"/>
+                            <grid>
+                                <columns>
+                                    <column label="Size"/>
+                                    <column label="Price"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="350g"/>
+                                        <label value="R50"/>
+                                    </row>
+                                    <row>
+                                        <label value="700g"/>
+                                        <label value="R100"/>
+                                    </row>
+                                    <row>
+                                        <label value="1.1kg"/>
+                                        <label value="R150"/>
+                                    </row>
+                                    <row>
+                                        <label value="1.5kg"/>
+                                        <label value="R200"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                            <button label="Remove"/>
+                        </row>
+                        <row>
+                            <label value="Meal Name 1"/>
+                            <label value="Meal Description"/>
+                            <grid>
+                                <columns>
+                                    <column label="Size"/>
+                                    <column label="Price"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="350g"/>
+                                        <label value="R50"/>
+                                    </row>
+                                    <row>
+                                        <label value="700g"/>
+                                        <label value="R100"/>
+                                    </row>
+                                    <row>
+                                        <label value="1.1kg"/>
+                                        <label value="R150"/>
+                                    </row>
+                                    <row>
+                                        <label value="1.5kg"/>
+                                        <label value="R200"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                            <button label="Remove"/>
+                        </row>
+                        <row>
+                            <label value="Meal Name 1"/>
+                            <label value="Meal Description"/>
+                            <grid>
+                                <columns>
+                                    <column label="Size"/>
+                                    <column label="Price"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="350g"/>
+                                        <label value="R50"/>
+                                    </row>
+                                    <row>
+                                        <label value="700g"/>
+                                        <label value="R100"/>
+                                    </row>
+                                    <row>
+                                        <label value="1.1kg"/>
+                                        <label value="R150"/>
+                                    </row>
+                                    <row>
+                                        <label value="1.5kg"/>
+                                        <label value="R200"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                            <button label="Remove"/>
+                        </row>
+                    </rows>
+
+                </grid>
+            </tabpanel>
+            <tabpanel>
+                <grid>
+                    <columns>
+                        <column label="Meal Name"/>
+                        <column label="Meal Description"/>
+                        <column label="Sizes and Prices"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Meal Name"/>
+                            <label value="Meal Description"/>
+                            <label value="Sizes"/>
+                            <label value="Prices"/>
+                        </row>
+                    </rows>
+                </grid>
+            </tabpanel>
+            <tabpanel>
+                <grid>
+                    <columns>
+                        <column label="Meal Name"/>
+                        <column label="Meal Description"/>
+                        <column label="Sizes and Prices"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Meal Name"/>
+                            <label value="Meal Description"/>
+                            <label value="Sizes"/>
+                            <label value="Prices"/>
+                        </row>
+                    </rows>
+                </grid>
+            </tabpanel>
+            <tabpanel>
+                <grid>
+                    <columns>
+                        <column label="Meal Name"/>
+                        <column label="Meal Description"/>
+                        <column label="Sizes and Prices"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Meal Name"/>
+                            <label value="Meal Description"/>
+                            <label value="Sizes"/>
+                            <label value="Prices"/>
+                        </row>
+                    </rows>
+                </grid>
+            </tabpanel>
+        </tabpanels>
+    </tabbox>
+</zk>

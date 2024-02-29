@@ -1,0 +1,59 @@
+.h1 {
+    color: #0c79e0;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.label-combobox-container {
+    margin: 20px auto;
+    display: block;
+    width: fit-content;
+}
+.selectWeek{
+    margin: 10px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBar {
+    width: 80%;
+    margin: 10px;
+}
+
+.add-button {
+    margin: 5px;
+    padding: 5px 10px;
+}
+
+.meal-details {
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.meal-details div {
+    margin-bottom: 10px;
+}
+
+.meal-details label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.meal-details textbox {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.meal-details .meal-description {
+    padding: 5px;
+    width: 80%;
+    height: 100px;
+}

@@ -1,0 +1,78 @@
+<zk>
+    <style src="createMenu.css"/>
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@init('org.ordermanager.MenuItemViewModel')">
+        <vlayout>
+            <label sclass="h1"> Menu Manager </label>
+            <div class="label-combobox-container">
+                <label sclass="selectWeek">Select Week</label>
+                <combobox value="Select Week" sclass="weekItems">
+                    <comboitem label="Week 1"/>
+                    <comboitem label="Week 2"/>
+                    <comboitem label="Week 3"/>
+                    <comboitem label="Week 4"/>
+                    <comboitem label="Week 5"/>
+                </combobox>
+            </div>
+
+            <div class="search">
+                <textbox sclass="searchBar" placeholder="Search menu item ..."/>
+                <button>Search</button>
+            </div>
+
+            <grid model="@load(vm.menuList)" mold="paging" pageSize="3">
+                <columns>
+                    <column label="Name"/>
+                    <column label="" width="10%"/>
+                </columns>
+                <rows>
+                    <template name="model" var="menuItem">
+                        <row sclass="menuItem" onClick='@command("selectItem", item=menuItem)'>
+                            <label value="@load(menuItem.itemName)"/>
+                            <button label="Details" sclass="add-button" onClick='@command("selectItem", item=menuItem)'/>
+                        </row>
+                    </template>
+                </rows>
+            </grid>
+
+            <div style="margin-top: 20px;"/>
+            <label style="color: blue;">Meal Details</label>
+
+            <div apply="org.zkoss.bind.BindComposer" sclass="meal-details">
+                <div>
+                    <label>Meal Name</label>
+                    <textbox value="@load(vm.selectedItem.itemName)"/>
+                </div>
+                <div>
+                    <label>Meal Description</label>
+                    <textbox value="@load(vm.selectedItem.itemDescription)" rows="4"/>
+                </div>
+                <label>Sizes</label>
+                <div>
+                    <grid model="@load(vm.selectedItem.sizes.entrySet())" width = "60%">
+                        <columns>
+                            <column label="Size"/>
+                            <column label="Cost" width="50%"/>
+                        </columns>
+                        <template name="model" var="entry">
+                            <row>
+                                <textbox value="@bind(entry.key)" rows="1"/>
+                                <textbox value="@bind(String.valueOf(entry.value))" rows="1"/>
+                            </row>
+                        </template>
+                    </grid>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+            <button label="Save"/>
+        </vlayout>
+    </window>
+</zk>
