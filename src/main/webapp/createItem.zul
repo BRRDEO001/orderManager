@@ -1,0 +1,34 @@
+<zk>
+    <window id="modalDialog" title="Create Menu Item" border="normal" width="80%"
+            viewModel="@id('vm') @init('org.ordermanager.MenuItemViewModel')"
+            apply="controllers.ItemController"
+            position="center,center" closable="true"
+            action="show: slideDown;hide: slideUp">
+        <style>
+            .itemDescription {
+            padding: 10px;
+            width: 100%;
+            margin: 20px;
+            }
+        </style>
+        <vlayout width="100%">
+            <div>
+                <label value="Item Name:"/>
+                <textbox id="itemName" sclass="vlayout" width="70%"/>
+            </div>
+            <div>
+                <label value="Item Description:"/>
+                <textbox id="itemDescription" sclass="itemDescription" rows="3"/>
+            </div>
+            <div id="sizesLayout">
+                <label value="Sizes and Costs:"/>
+                <div id="sizeCosts">
+                    <!-- Size and Cost inputs will be added here -->
+                </div>
+                <button id="addSizeBtn" label="Add Size" onClick="@command('addSizeRow')"/>
+
+            </div>
+            <button onClick="@command('saveItem')" id="saveBtn" label="Save"/>
+        </vlayout>
+    </window>
+</zk>

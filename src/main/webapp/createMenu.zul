@@ -1,12 +1,13 @@
 <zk>
-    <style src="createMenu.css"/>
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@init('org.ordermanager.MenuItemViewModel')">
+            viewModel="@id('vm') @init('org.ordermanager.MenuItemViewModel')">
+
         <vlayout>
+
             <label sclass="h1"> Menu Manager </label>
-            <div class="label-combobox-container">
+            <div class="label-combobox-container" style="text-align: center;">
                 <label sclass="selectWeek">Select Week</label>
-                <combobox value="Select Week" sclass="weekItems">
+                <combobox value="@load(vm.selectedWeek)" sclass="weekItems" placeholder="Select Week">
                     <comboitem label="Week 1"/>
                     <comboitem label="Week 2"/>
                     <comboitem label="Week 3"/>
@@ -15,64 +16,65 @@
                 </combobox>
             </div>
 
-            <div class="search">
-                <textbox sclass="searchBar" placeholder="Search menu item ..."/>
-                <button>Search</button>
+
+            <div class="search" style="text-align: center;">
+                <textbox id="searchBar" sclass="searchBar" placeholder="Search menu item ..." width="80%" value="@bind(vm.searchText)" onOK="@command('searchItems', itemStr=self.value)"/>
+                <button label="Search" onClick="@command('searchItems', itemStr=vm.searchText)"/>
+
             </div>
 
-            <grid model="@load(vm.menuList)" mold="paging" pageSize="3">
+
+            <grid model="@load(vm.filteredMenuList)" mold="paging" pageSize="6">
                 <columns>
                     <column label="Name"/>
-                    <column label="" width="10%"/>
+                        <column label="" width="10%">
+                            <div>
+                                <button id="addItem" label="Add Product" onClick="@command('showModal')" autodisable="self" />
+                            </div>
+                        </column>
                 </columns>
                 <rows>
                     <template name="model" var="menuItem">
-                        <row sclass="menuItem" onClick='@command("selectItem", item=menuItem)'>
+                        <row sclass="menuItem" onClick='@command("selectItem", item=menuItem)' >
                             <label value="@load(menuItem.itemName)"/>
-                            <button label="Details" sclass="add-button" onClick='@command("selectItem", item=menuItem)'/>
+                            <button label="Add" sclass="add-button"/>
                         </row>
                     </template>
                 </rows>
             </grid>
 
             <div style="margin-top: 20px;"/>
-            <label style="color: blue;">Meal Details</label>
+            <label sclass="meal-details-label">Meal Details</label>
 
-            <div apply="org.zkoss.bind.BindComposer" sclass="meal-details">
-                <div>
-                    <label>Meal Name</label>
-                    <textbox value="@load(vm.selectedItem.itemName)"/>
+            <div sclass="meal-details">
+                <div sclass="meal-label">
+                    <label >Meal Name</label>
+                    <textbox value="@bind(vm.selectedItem.itemName)" class="meal-textbox"/>
                 </div>
                 <div>
-                    <label>Meal Description</label>
-                    <textbox value="@load(vm.selectedItem.itemDescription)" rows="4"/>
+                    <label sclass="meal-label">Meal Description</label>
+                    <textbox value="@bind(vm.selectedItem.itemDescription)" rows="4" class="meal-textbox"/>
                 </div>
+
+
                 <label>Sizes</label>
                 <div>
-                    <grid model="@load(vm.selectedItem.sizes.entrySet())" width = "60%">
-                        <columns>
+                    <grid sclass="detail-summary" model="@bind(vm.selectedItem.sizes)" width="45%">
+                        <columns sclass="size-columns">
                             <column label="Size"/>
-                            <column label="Cost" width="50%"/>
+                            <column label="Cost"/>
                         </columns>
-                        <template name="model" var="entry">
+                        <template name="model" var="sizeCost">
                             <row>
-                                <textbox value="@bind(entry.key)" rows="1"/>
-                                <textbox value="@bind(String.valueOf(entry.value))" rows="1"/>
+                                <textbox value="@bind(sizeCost.size)" rows="1"/>
+                                <textbox value="@bind(sizeCost.cost)" rows="1"/>
                             </row>
                         </template>
                     </grid>
                 </div>
-
-
             </div>
 
-
-
-
-
-
-
-            <button label="Save"/>
+            <button label="Save" onClick="@command('updateItem', item=vm.selectedItem)"/>
         </vlayout>
     </window>
 </zk>

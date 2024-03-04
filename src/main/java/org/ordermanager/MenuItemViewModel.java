@@ -1,23 +1,31 @@
 package org.ordermanager;
 
+import controllers.ModalDialogController;
 import lombok.Getter;
 import lombok.Setter;
 import models.MenuItem;
+import models.SizeCost;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
-import org.zkoss.zk.ui.Executions;
+import org.zkoss.bind.annotation.NotifyChange;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Setter
 @Getter
 public class MenuItemViewModel {
 
     private List<MenuItem> menuList;
+
+
+    private List<MenuItem> filteredMenuList;
+
     private MenuItem selectedItem;
+    private String selectedWeek;
+    private String searchText;
 
     public MenuItemViewModel() {
         menuList = new ArrayList<>();
@@ -33,13 +41,15 @@ public class MenuItemViewModel {
         menuList.add(item3);
         menuList.add(item4);
         menuList.add(item5);
+
+        filteredMenuList = new ArrayList<>(menuList);
     }
 
-    private HashMap<String, Double> createDummySizes() {
-        HashMap<String, Double> sizes = new HashMap<>();
-        sizes.put("Small", 5.99);
-        sizes.put("Medium", 7.99);
-        sizes.put("Large", 9.99);
+    private List<SizeCost> createDummySizes() {
+        List<SizeCost> sizes = new ArrayList<>();
+        sizes.add(new SizeCost("Small", 5.99));
+        sizes.add(new SizeCost("Medium", 7.99));
+        sizes.add(new SizeCost("Large", 9.99));
         return sizes;
     }
 
@@ -51,5 +61,35 @@ public class MenuItemViewModel {
         }
     }
 
+    @Command
+    @NotifyChange({"selectedItem", "menuList"})
+    public void updateItem(@BindingParam("item") MenuItem item){
+        if (item != null && selectedItem != null) {
+            selectedItem.setItemName(item.getItemName());
+            selectedItem.setItemDescription(item.getItemDescription());
+            selectedItem.setSizes(item.getSizes());
+            BindUtils.postNotifyChange(null, null, this, "selectedItem");
+            BindUtils.postNotifyChange(null, null, this, "menuList");
+        }
+    }
+
+    @Command
+    @NotifyChange("filteredMenuList")
+    public void searchItems(@BindingParam("itemStr") String searchText) {
+        if (searchText != null && !searchText.isEmpty()) {
+            filteredMenuList = menuList.stream()
+                    .filter(menuItem -> menuItem.getItemName().contains(searchText))
+                    .collect(Collectors.toList());
+        } else {
+            filteredMenuList = new ArrayList<>(menuList);
+        }
+    }
+    @Command
+    public void showModal() {
+        ModalDialogController modalDialogController = new ModalDialogController();
+        modalDialogController.showModal();
+    }
+
 
 }
+
